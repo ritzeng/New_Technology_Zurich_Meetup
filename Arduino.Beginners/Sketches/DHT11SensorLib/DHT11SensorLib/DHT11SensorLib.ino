@@ -20,15 +20,20 @@
 #define DHTTYPE DHT11     // Hier wird definiert was für ein Sensor ausgelesen wird. In 
                           // unserem Beispiel möchten wir einen DHT11 auslesen, falls du 
                           // ein DHT22 hast einfach DHT22 eintragen
+                          // Script läuft mit der Version V.1.2.3 der Library f. DHT11
+                          // Pins des DHT Moduls vor vorne: Plus - Siganl - leer - GND
        
 /********************************( Definieren der Objekte )********************************/                          
 DHT dht(DHTPIN, DHTTYPE);
 
+/******************************************************************************************/
 void setup() {
   Serial.begin(9600);
   Serial.println("DHT11 Testprogramm");
   dht.begin();
 }
+
+/******************************************************************************************/
 void loop() {
   // Wait a few seconds between measurements.
   delay(2000);                     // Hier definieren wir die Verweilzeit die gewartet wird  
@@ -40,7 +45,7 @@ void loop() {
   float t = dht.readTemperature(); // Lesen der Temperatur in °C und speichern in die Variable t
   
 /*********************( Überprüfen ob alles richtig Ausgelesen wurde )*********************/ 
-  if (isnan(h) || isnan(t)) {       
+  if (isnan(h) || isnan(t)) {
     Serial.println("Fehler beim auslesen des Sensors!");
     return;
   }

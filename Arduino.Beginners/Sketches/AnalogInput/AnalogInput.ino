@@ -28,12 +28,13 @@
 */
 
 int sensorPin = A0;    // select the input pin for the potentiometer
-//FR int ledPin = 13;      // select the pin for the LED
-int sensorValue = 0;  // variable to store the value coming from the sensor
+//FR int ledPin = 13;  // select the pin for the LED
+int sensorValue = 0;   // variable to store the value coming from the sensor
 
 void setup() {
   // declare the ledPin as an OUTPUT:
   pinMode(LED_BUILTIN, OUTPUT);   //LED_BUILTIN
+  Serial.begin(9600);
 }
 
 void loop() {
@@ -43,7 +44,9 @@ void loop() {
   digitalWrite(LED_BUILTIN, HIGH);  //FR
   // stop the program for <sensorValue> milliseconds:
   delay(sensorValue);
-  Serial.print(sensorValue);
+  Serial.print("Output value= ");
+  Serial.print("%\t");
+  Serial.println(sensorValue);
   // turn the ledPin off:
   digitalWrite(LED_BUILTIN, LOW);   //FR
   // stop the program for for <sensorValue> milliseconds:
